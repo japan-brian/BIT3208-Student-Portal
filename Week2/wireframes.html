@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Week 2 - Wireframes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+        }
+        .wireframe {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .wireframe h2 {
+            color: #764ba2;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .box {
+            border: 2px dashed #ccc;
+            background: #fafafa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .field {
+            margin: 10px 0;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .button {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #764ba2;
+            color: white;
+        }
+        .badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📐 Week 2 - Wireframes & GUI Design</h1>
+    <h3 style="text-align:center; color:#666;">Student Portal - Brian Kikuyu</h3>
+
+    <!-- Login Page Wireframe -->
+    <div class="wireframe">
+        <h2>🔐 1. Login Page</h2>
+        <div class="box">
+            <div class="field">📧 Username / Email</div>
+            <div class="field">🔒 Password</div>
+            <div class="button">Login</div>
+            <p style="margin-top:10px;">⬇️ Don't have an account? <span class="badge">Register here</span></p>
+        </div>
+        <p><strong>Purpose:</strong> Users enter credentials to access the portal.</p>
+    </div>
+
+    <!-- Register Page Wireframe -->
+    <div class="wireframe">
+        <h2>📝 2. Register Page</h2>
+        <div class="box">
+            <div class="field">👤 Full Name</div>
+            <div class="field">📧 Email Address</div>
+            <div class="field">🔑 Password (min 6 chars)</div>
+            <div class="field">✓ Confirm Password</div>
+            <div class="button">Create Account</div>
+        </div>
+        <p><strong>Purpose:</strong> New users sign up for portal access.</p>
+    </div>
+
+    <!-- Dashboard Wireframe -->
+    <div class="wireframe">
+        <h2>📊 3. Dashboard</h2>
+        <div class="box">
+            <div style="display:flex; justify-content:space-between;">
+                <span>🎓 Student Portal</span>
+                <span>👤 Welcome, Brian | <span class="badge">Logout</span></span>
+            </div>
+            <hr style="margin:15px 0;">
+            <div style="display:flex; gap:10px; margin:15px 0;">
+                <div class="badge" style="background:#667eea;">➕ Add Student</div>
+                <div class="badge" style="background:#667eea;">📋 View Students</div>
+                <div class="badge" style="background:#e74c3c;">🚪 Logout</div>
+            </div>
+            <div style="display:flex; gap:10px; margin:15px 0;">
+                <div style="background:#f0f2f5; padding:15px; border-radius:8px; flex:1;">📊 Total Students: 15</div>
+                <div style="background:#f0f2f5; padding:15px; border-radius:8px; flex:1;">👥 Total Users: 8</div>
+            </div>
+        </div>
+        <p><strong>Purpose:</strong> Main landing page after login with navigation and stats.</p>
+    </div>
+
+    <!-- Students Table Wireframe -->
+    <div class="wireframe">
+        <h2>📋 4. Students List / View Page</h2>
+        <div class="box">
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Full Name</th><th>Reg Number</th><th>Course</th><th>Year</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>John Doe</td><td>MKU/001</td><td>CS</td><td>1</td><td>✏️ Edit 🗑️ Delete</td></tr>
+                    <tr><td>2</td><td>Jane Smith</td><td>MKU/002</td><td>IT</td><td>2</td><td>✏️ Edit 🗑️ Delete</td></tr>
+                    <tr><td>3</td><td>Bob Wilson</td><td>MKU/003</td><td>BIT</td><td>3</td><td>✏️ Edit 🗑️ Delete</td></tr>
+                </tbody>
+            </table>
+            <div class="button" style="margin-top:15px; display:inline-block;">➕ Add New Student</div>
+        </div>
+        <p><strong>Purpose:</strong> Display all students with edit/delete options.</p>
+    </div>
+
+    <!-- Add/Edit Form Wireframe -->
+    <div class="wireframe">
+        <h2>✏️ 5. Add / Edit Student Form</h2>
+        <div class="box">
+            <div class="field">👤 Full Name *</div>
+            <div class="field">🆔 Registration Number *</div>
+            <div class="field">📚 Course *</div>
+            <div class="field">📅 Year of Study (1-4)</div>
+            <div class="field">📧 Email</div>
+            <div class="field">📞 Phone</div>
+            <div class="button">Save Student</div>
+            <div class="button" style="background:#6c757d;">Cancel</div>
+        </div>
+        <p><strong>Purpose:</strong> Form to add new students or edit existing ones.</p>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="wireframe">
+        <h2>🛠️ Technology Stack Selected</h2>
+        <div class="box">
+            <ul>
+                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
+                <li><strong>Backend:</strong> PHP (8.x)</li>
+                <li><strong>Database:</strong> MySQL (via XAMPP)</li>
+                <li><strong>Server:</strong> Apache (XAMPP)</li>
+                <li><strong>Version Control:</strong> Git & GitHub</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Workflow -->
+    <div class="wireframe">
+        <h2>🔄 Project Workflow</h2>
+        <div class="box">
+            <p>1. User registers → Data stored in <strong>users</strong> table</p>
+            <p>2. User logs in → Session created → Redirect to dashboard</p>
+            <p>3. Dashboard displays stats from <strong>students</strong> table</p>
+            <p>4. Add student → INSERT query → Shows success message</p>
+            <p>5. View students → SELECT query → Displays in table</p>
+            <p>6. Edit student → UPDATE query → Pre-fills form with existing data</p>
+            <p>7. Delete student → DELETE query → Confirmation popup first</p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
