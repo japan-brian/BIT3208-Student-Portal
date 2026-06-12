@@ -1,11 +1,11 @@
 # BIT3208 – Advanced Web Design and Development
 ## Project Report: PHP & MySQL Student Portal
 
-**Student:** Brian Kikuyu  
-**Reg No:** [your reg number]  
+**Student:** Kikuyu Brian Japan
+**Reg No:** BSCCS/2024/74678  
 **Institution:** Mount Kenya University – Thika Main Campus  
-**Lecturer:** [lecturer name]  
-**Date:** [submission date]
+**Lecturer:** Michael Nyoro 
+**Date:** 11th June 2026
 
 ---
 
