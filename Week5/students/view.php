@@ -22,7 +22,7 @@ $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <div class="container">
     <div class="dashboard-wrapper">
         <div class="topbar">
-            <h1>🎓 Student Portal</h1>
+            <h1>🎓 EduTrack</h1>
             <span>Logged in: <?= htmlspecialchars($_SESSION['username']) ?> &nbsp;|&nbsp;
                 <a href="../logout.php" style="color:#e63946;">Logout</a></span>
         </div>

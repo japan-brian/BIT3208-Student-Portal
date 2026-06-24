@@ -31,7 +31,7 @@ requests and MySQL handles data storage — two separate services working togeth
 **Date:** 6th May 2026
 
 **What I did:**
-- Designed wireframes for the student portal (login, register, dashboard, CRUD pages)
+- Designed wireframes for the EduTrack (login, register, dashboard, CRUD pages)
 - Planned the project workflow: auth first, then CRUD
 - Selected technologies: PHP, MySQL, HTML, CSS, JavaScript
 - Sketched GUI layouts for all main pages

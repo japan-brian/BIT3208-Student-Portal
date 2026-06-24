@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container">
     <div class="form-box" style="max-width:520px;">
         <h2>Add New Student</h2>
-        <p class="subtitle">BIT3208 Student Portal</p>
+        <p class="subtitle">BIT3208 EduTrack</p>
 
         <?php if ($error): ?>
             <div class="alert error"><?= $error ?></div>

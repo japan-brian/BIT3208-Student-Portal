@@ -18,14 +18,14 @@ $user   = mysqli_fetch_assoc($result);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard – Student Portal</title>
+    <title>Dashboard – EduTrack</title>
     <link rel="stylesheet" href="assets/css/style.css?v=2">
 </head>
 <body>
 <div class="container">
     <div class="dashboard-wrapper">
         <div class="topbar">
-            <h1>🎓 Student Portal</h1>
+            <h1>🎓 EduTrack</h1>
             <span>Welcome, <?= htmlspecialchars($username) ?> &nbsp;|&nbsp; <a href="logout.php" style="color:#e63946;">Logout</a></span>
         </div>
 

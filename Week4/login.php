@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login – Student Portal</title>
+    <title>Login – EduTrack</title>
     <link rel="stylesheet" href="assets/css/style.css?v=2">
 </head>
 <body>
 <div class="container">
     <div class="form-box">
         <h2>Welcome Back</h2>
-        <p class="subtitle">Week 4 – Student Portal</p>
+        <p class="subtitle">Week 4 – EduTrack</p>
 
         <?php if ($error): ?>
             <div class="alert error"><?= $error ?></div>

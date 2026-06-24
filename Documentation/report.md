@@ -1,5 +1,5 @@
 # BIT3208 – Advanced Web Design and Development
-## Project Report: PHP & MySQL Student Portal
+## Project Report: PHP & MySQL EduTrack
 
 **Student:** Kikuyu Brian Japan
 **Reg No:** BSCCS/2024/74678  
@@ -11,7 +11,7 @@
 
 ## 1. Introduction
 
-This report documents the development of a PHP and MySQL Student Portal 
+This report documents the development of a PHP and MySQL EduTrack 
 built as part of the BIT3208 Advanced Web Design and Development coursework. 
 The system covers server-side programming, user authentication, session 
 management, and full CRUD database operations across Weeks 4 and 5 of the 
