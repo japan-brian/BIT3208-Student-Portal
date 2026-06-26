@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Invalid email format.";
 
     if (empty($errors)) {
-        // Check if username or email exists
         $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
         $stmt->bind_param("ss", $username, $email);
         $stmt->execute();

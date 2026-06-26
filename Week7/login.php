@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->close();
 
         if ($user) {
-            // Check lockout
             $locked = false;
             if ($user['locked_until'] && strtotime($user['locked_until']) > time()) {
                 $locked = true;
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             if (!$locked && password_verify($password, $user['password'])) {
-                // Successful login – reset attempts
                 $stmt = $conn->prepare("UPDATE users SET login_attempts = 0, locked_until = NULL WHERE id = ?");
                 $stmt->bind_param("i", $user['id']);
                 $stmt->execute();
@@ -37,20 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
 
-                // Remember Me cookie (7 days)
                 if ($remember) {
-                    $token = bin2hex(random_bytes(32));
-                    // Store token in a separate cookie (you could also store in DB – simple approach)
-                    setcookie('remember_token', $token, time() + 604800, '/', '', false, true);
-                    // For simplicity, store the user_id in a cookie – but better to use a token table.
-                    // We'll just store username and a hash; for demo, set user_id in cookie (not secure, but works)
                     setcookie('remember_user', $user['id'], time() + 604800, '/', '', false, true);
                 }
 
                 header("Location: dashboard.php");
                 exit();
             } else {
-                // Failed attempt
                 if (!$locked) {
                     $attempts = $user['login_attempts'] + 1;
                     $locked_until = null;

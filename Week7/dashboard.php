@@ -12,14 +12,14 @@ $user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
 $role = $_SESSION['role'];
 
-// Get user details
+// User details
 $stmt = $conn->prepare("SELECT id, username, email, role, created_at FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-// Counts (all prepared)
+// Counts
 $stmt = $conn->prepare("SELECT COUNT(*) as c FROM students");
 $stmt->execute();
 $total_students = $stmt->get_result()->fetch_assoc()['c'];
@@ -30,7 +30,6 @@ $stmt->execute();
 $total_books = $stmt->get_result()->fetch_assoc()['c'];
 $stmt->close();
 
-// Year counts
 $year_counts = [];
 for ($y = 1; $y <= 4; $y++) {
     $stmt = $conn->prepare("SELECT COUNT(*) as c FROM students WHERE year_of_study = ?");
@@ -40,7 +39,6 @@ for ($y = 1; $y <= 4; $y++) {
     $stmt->close();
 }
 
-// Only admin can see total users count
 $total_users = 0;
 if ($role === 'admin') {
     $stmt = $conn->prepare("SELECT COUNT(*) as c FROM users");
@@ -84,7 +82,6 @@ if ($role === 'admin') {
                 <a href="students/view.php" class="secondary">📋 View All Students</a>
                 <a href="books/view.php" class="secondary">📚 Library</a>
                 <?php if ($role === 'admin'): ?>
-                    <!-- Admin-only links -->
                     <a href="#" class="secondary">👥 Manage Users</a>
                 <?php endif; ?>
                 <a href="logout.php" class="logout">⏻ Logout</a>

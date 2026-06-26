@@ -3,52 +3,71 @@ session_start();
 require_once '../includes/db.php';
 /** @var mysqli $conn */
 
-if (!isset($_SESSION['user_id'])) { header("Location: ../login.php"); exit(); }
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
+    exit();
+}
 
-$result = $conn->query("SELECT * FROM books ORDER BY created_at DESC");
-$books  = $result->fetch_all(MYSQLI_ASSOC);
+// Fetch all books
+$stmt = $conn->prepare("SELECT * FROM books ORDER BY created_at DESC");
+$stmt->execute();
+$books = $stmt->get_result();
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Library – Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library – EduTrack</title>
     <link rel="stylesheet" href="../assets/css/style.css?v=2">
 </head>
 <body>
 <div class="container">
     <div class="dashboard-wrapper">
         <div class="topbar">
-            <h1>📚 Library Management</h1>
-            <span><a href="../logout.php">Logout</a></span>
+            <h1>📚 Library</h1>
+            <a href="../dashboard.php">← Dashboard</a>
         </div>
+
         <div class="card">
-            <h3>All Books (<?= count($books) ?>)</h3>
-            <div class="nav-links">
-                <a href="add.php">+ Add Book</a>
-                <a href="../dashboard.php" class="secondary">← Dashboard</a>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3>All Books</h3>
+                <!-- ═══ This is the correct link to add a book ═══ -->
+                <a href="add.php" class="btn">＋ Add Book</a>
             </div>
-            <?php if (count($books) === 0): ?>
-                <p style="color:#888; padding:20px;">No books yet. <a href="add.php">Add one</a>.</p>
+
+            <?php if ($books->num_rows > 0): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Book Code</th>
+                            <th>Available</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; while ($book = $books->fetch_assoc()): ?>
+                        <tr>
+                            <td><?= $i++ ?></td>
+                            <td><?= htmlspecialchars($book['title']) ?></td>
+                            <td><?= htmlspecialchars($book['author']) ?></td>
+                            <td><?= htmlspecialchars($book['category']) ?></td>
+                            <td><?= htmlspecialchars($book['book_code']) ?></td>
+                            <td><?= $book['available'] ? '✅ Yes' : '❌ No' ?></td>
+                            <td>
+                                <a href="delete.php?id=<?= $book['id'] ?>" onclick="return confirm('Delete this book?')">🗑️ Delete</a>
+                            </td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
             <?php else: ?>
-            <table>
-                <thead><tr><th>#</th><th>Title</th><th>Author</th><th>Category</th><th>Code</th><th>Status</th><th>Actions</th></tr></thead>
-                <tbody>
-                <?php foreach ($books as $i => $b): ?>
-                <tr>
-                    <td><?= $i+1 ?></td>
-                    <td><?= htmlspecialchars($b['title']) ?></td>
-                    <td><?= htmlspecialchars($b['author']) ?></td>
-                    <td><?= htmlspecialchars($b['category']) ?></td>
-                    <td><?= htmlspecialchars($b['book_code']) ?></td>
-                    <td><?= $b['available'] ? '<span class="badge year1">Available</span>' : '<span class="badge year4">Borrowed</span>' ?></td>
-                    <td>
-                        <a href="delete.php?id=<?= $b['id'] ?>" onclick="return confirm('Delete this book?')" class="btn-danger">Delete</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+                <p>No books yet. <a href="add.php">Add one now</a>.</p>
             <?php endif; ?>
         </div>
     </div>

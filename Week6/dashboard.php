@@ -11,20 +11,20 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
 
-// 1. Get current user details (prepared)
+// User details
 $stmt = $conn->prepare("SELECT id, username, email, created_at FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-// 2. Count total students
+// Count students
 $stmt = $conn->prepare("SELECT COUNT(*) as c FROM students");
 $stmt->execute();
 $total_students = $stmt->get_result()->fetch_assoc()['c'];
 $stmt->close();
 
-// 3. Count students by year (1–4)
+// Year counts
 $year_counts = [];
 for ($y = 1; $y <= 4; $y++) {
     $stmt = $conn->prepare("SELECT COUNT(*) as c FROM students WHERE year_of_study = ?");
@@ -34,7 +34,7 @@ for ($y = 1; $y <= 4; $y++) {
     $stmt->close();
 }
 
-// 4. Count total books (new for Week6)
+// ═══ NEW: Count books ═══
 $stmt = $conn->prepare("SELECT COUNT(*) as c FROM books");
 $stmt->execute();
 $total_books = $stmt->get_result()->fetch_assoc()['c'];
@@ -52,14 +52,13 @@ $stmt->close();
 <div class="container">
     <div class="dashboard-wrapper">
 
-        <!-- Topbar with product name -->
         <div class="topbar">
             <h1>🎓 EduTrack</h1>
             <span>Welcome back, <strong style="color:white;"><?= htmlspecialchars($username) ?></strong> &nbsp;|&nbsp;
                 <a href="logout.php">Logout</a></span>
         </div>
 
-        <!-- Stats row – now with 4 cards -->
+        <!-- Stats row – 4 cards now -->
         <div class="stats-row">
             <div class="stat-card">
                 <div class="stat-label">Total Students</div>
@@ -73,7 +72,7 @@ $stmt->close();
                 <div class="stat-label">Year 3 & 4</div>
                 <div class="stat-value"><?= $year_counts[3] + $year_counts[4] ?></div>
             </div>
-            <!-- NEW: Library Books stat -->
+            <!-- ═══ NEW: Library Books stat ═══ -->
             <div class="stat-card purple">
                 <div class="stat-label">Library Books</div>
                 <div class="stat-value"><?= $total_books ?></div>
@@ -86,7 +85,7 @@ $stmt->close();
             <div class="nav-links">
                 <a href="students/add.php">＋ Add Student</a>
                 <a href="students/view.php" class="secondary">📋 View All Students</a>
-                <!-- NEW: Library link -->
+                <!-- ═══ NEW: Library link ═══ -->
                 <a href="books/view.php" class="secondary">📚 Library</a>
                 <a href="logout.php" class="logout">⏻ Logout</a>
             </div>
